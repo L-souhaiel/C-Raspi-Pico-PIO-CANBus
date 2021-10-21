@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/CMakeFiles/PioasmBuild"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/CMakeFiles/PioasmBuild.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/CMakeFiles/PioasmBuild-complete.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
+		},
+		{
+			"file" : "/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"PioasmBuild"
+		],
+		"name" : "PioasmBuild"
+	}
+}

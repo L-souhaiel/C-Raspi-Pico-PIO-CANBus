@@ -1,0 +1,149 @@
+.program CAN_Rx 
+
+                        ;assembly code receiving data 
+    wait 0 pin 0        ;stall here until start bit 
+    set x, 31           ; load X scartch register with 31 so that we can loop 32 time we do that 4 time in each branch (bitloop1,2,3,4) to sent 128 bits
+    nop        [14]
+
+bitloop1:                
+    
+    in pins, 1                ;input one pin into the input shift register (this instruction take 1 execution cycle)
+    jmp x-- bitloop1 [14]     ; jump to bitloop1 if x > 0   (take one execution cycle) and ([14] make 14 execution cycle delay ) what make in total  16 execution cycle for every bit
+    set x, 31                  ; if x = 0 it will jump here load x and make the same things 4 time until 128 bits are received
+    jmp bitloop2
+
+bitloop2:
+    
+    in pins, 1
+    jmp x-- bitloop2 [14]
+    set x, 31
+    jmp bitloop3
+
+bitloop3:
+    
+    in pins, 1
+    jmp x-- bitloop3 [14]
+    set x, 31
+    jmp bitloop4
+
+bitloop4:
+
+    in pins, 1
+    jmp x-- bitloop4 [14]
+    nop   [31]       ; we dont do nothing 2 *128 so that we can not read the same frame 2 time
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+    nop   [31]
+
+
+
+.program CAN_TX
+.side_set 1 opt
+                             ;assembly code for data transmission
+    pull       side 1 [7]    ;stall here until data on the TX FIFO will be puted. side 1 to assert stop bit until no data on TX FIFO present 
+    set x, 31  side 0 [7]    ;load x register with 31 so that we can loop 32 time we do that 4 time to sent 128 bit  , side 0 to assert the start bit 
+    nop    [7] 
+
+loop1: 
+    out pins , 1
+    nop [6]
+    jmp x-- loop1 [7]
+    set x, 31
+    jmp loop2
+
+loop2:
+    out pins , 1
+    nop [6]
+    jmp x-- loop2 [7]
+    set x, 31
+    jmp loop3
+
+loop3:
+    out pins , 1
+    nop [6]
+    jmp x-- loop3 [7]
+    set x, 31
+    jmp loop4
+
+
+loop4:
+    out pins , 1
+    nop [6]
+    jmp x-- loop4 [7]
+    
+           
+
+
+
+
+   
+
+
+
+% c-sdk {
+    
+    #include "hardware/clocks.h"
+    #include "hardware/gpio.h"
+    
+    static inline void CAN_Rx_program_init(PIO pio, uint sm, uint offset, uint pin_rx ,uint baud)
+    {
+    /*
+    setup pio and state machine  and baudrate 
+    */
+    pio_sm_set_consecutive_pindirs(pio, sm, pin_rx, 1, false); // set pin direction as Input
+    pio_gpio_init(pio, pin_rx);
+    gpio_pull_up(pin_rx);            //pull up resistor on the PIN_rx
+    
+
+    pio_sm_config c = CAN_Rx_program_get_default_config(offset);
+    sm_config_set_in_pins(&c, pin_rx); // for WAIT, IN
+    
+   
+    sm_config_set_in_shift(&c, false, true,1);  // false for shifting MSB first , true for autopush , 1 for pushing every single bit (that can be a value from 1..32) 
+    
+    // SM transmits 1 bit per 16 execution cycles.
+    float div = (float)clock_get_hz(clk_sys) / ( baud * 16 );  // giving every bit 16 execution cycle with the right baudrate
+    sm_config_set_clkdiv(&c, div);
+    
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true); 
+    }
+
+
+     static inline void CAN_TX_program_init(PIO pio, uint sm, uint offset, uint pin_tx ,uint baud)
+     {
+     
+    pio_sm_set_pins_with_mask(pio, sm, 1u << pin_tx, 1u << pin_tx);
+    pio_sm_set_pindirs_with_mask(pio, sm, 1u << pin_tx, 1u << pin_tx);
+    pio_gpio_init(pio, pin_tx);
+
+    pio_sm_config c = CAN_TX_program_get_default_config(offset);
+
+    // OUT shifts to right, no autopull
+    sm_config_set_out_shift(&c, false, true, 32);  // false for MSB first , true autopull enabled , 32 for pulling every 32 bit from the FIFO
+
+    // We are mapping both OUT and side-set to the same pin, because sometimes
+    // we need to assert user data onto the pin (with OUT) and sometimes
+    // assert constant values (start/stop bit)
+    sm_config_set_out_pins(&c, pin_tx, 1);
+    sm_config_set_sideset_pins(&c, pin_tx);    //side set pin to assert start stop bit on the TX_Pin
+
+    // We only need TX, so get an 8-deep FIFO!
+   // sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+
+    // SM transmits 1 bit per 8 execution cycles.
+    float div = (float)clock_get_hz(clk_sys) / (16 * baud);    // 16 execution cycle with the right baudrate for every bit
+    sm_config_set_clkdiv(&c, div);
+
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+     }
+
+%}

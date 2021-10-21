@@ -1,0 +1,13 @@
+# Target labels
+ PioasmBuild
+# Source files and their labels
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/CMakeFiles/PioasmBuild
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/CMakeFiles/PioasmBuild.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/CMakeFiles/PioasmBuild-complete.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
+/home/louati/pico/pico/Devlopemnt+/PIO/CAN_Bus/CAN_Bus_PIO_Pico/build/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
