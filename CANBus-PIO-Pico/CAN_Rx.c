@@ -1,7 +1,7 @@
 #include "CAN_RX_D.h"
 
 
- 
+ //Devloppement of CAN Bus 2.0A using PIO-Mode for Raspberry Pi Pico.
 
 int LastReceived = -1;
 
