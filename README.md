@@ -25,6 +25,21 @@ To sent data the user should choose first in the code the Message identifier and
 
 When data are coming ,the will be Automatically pushed from the Input shift register into the FIFO and will be processed then on the USB console the user see the received Message ID and Data bytes then they will be stored in Array of structure containing CAN Bus Data. 
 
+# Dependencies
+
+## Software 
+
+The Raspberry Pi Pico C-SDK should be installed with the ARM C compiler , these can be done by following these Link [Getting Started With Raspberry Pi Pico ](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf).  
+
+## Hardware
+
+The MCP2555 should be wired with the CAN_high and CAN_Low to handle transformation of binary message to Analogue message due to voltage differentiation. The complete Layout should be like below: 
+
+
+
+![Layout](https://github.com/TitiLouati/C-Raspi-Pico-PIO-CANBus/blob/main/CANBus-PIO-Pico/schaltungPCB.png)
+
+
 
 
 
