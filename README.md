@@ -40,6 +40,10 @@ The MCP2555 should be wired with the CAN_high and CAN_Low to handle transformati
 ![Layout](https://github.com/TitiLouati/C-Raspi-Pico-PIO-CANBus/blob/main/CANBus-PIO-Pico/schaltungPCB.png)
 
 
+# Program Construction
+
+the Sent and Read of the Data will run parallel in the same Time. Sending data have his own thread called on the pico  Core . and reading of data has his own Core
+
 # Installation 
 
 The Raspberry Pi Pico C-SDK should be installed from source. and this project should be cloned on the local host then : 
