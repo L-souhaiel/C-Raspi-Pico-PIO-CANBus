@@ -40,6 +40,28 @@ The MCP2555 should be wired with the CAN_high and CAN_Low to handle transformati
 ![Layout](https://github.com/TitiLouati/C-Raspi-Pico-PIO-CANBus/blob/main/CANBus-PIO-Pico/schaltungPCB.png)
 
 
+# Installation 
+
+The Raspberry Pi Pico C-SDK should be installed from source. and this project should be cloned on the local host then : 
+
+to only run this project on the Raspberry Pi pico , the CAN_Rx.uf2 should be copied from the build folder into the Raspberry Pi pico. 
+
+to make some change like New Message_ID or the Data Byte that should be sendet that can be done from  CAN_Rx.c . than the user shoud build the project . to do 
+
+that run :
+
+```
+cmake ..
+```
+
+than : 
+
+```
+make
+
+```
+
+
 
 
 
